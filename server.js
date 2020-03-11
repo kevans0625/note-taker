@@ -14,6 +14,8 @@ var PORT = 8080;
 //parse the data 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 //create the html routes
 // =============================================================
@@ -21,6 +23,7 @@ app.use(express.json());
 //send the user to the notes page 
 app.get("/notes", function(req, res){
     res.sendFile(path.join(__dirname, "/public/notes.html"));
+
 });
 
 //send the user to the homepage
@@ -39,16 +42,31 @@ fs.readFile("./db/db.json", 'utf-8', (err, data) => {
 // * GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
 app.get("/api/notes", function(req, res) {
     return res.json(notes);
+    //How do you check to see if this is working? 
+    //issues with css
   });
 
-  //create a new note
-  // * POST `/api/notes` - Should recieve a new note to save on the request body, add it to the
-  //  `db.json` file, and then return the new note to the client.
+//   //create a new note
+//   // * POST `/api/notes` - Should recieve a new note to save on the request body, add it to the
+//   //  `db.json` file, and then return the new note to the client.
 //   app.post("/api/notes", function(req, res) {
-//       //each note needs an id  so install UUID 
-//       // req.body hosts is equal to the JSON post sent from the user
-//       // This works because of our body parsing middleware
-//       var newNote = req.body;
+      
+   
+
+//     //each note needs an id  so install UUID
+
+//     // req.body hosts is equal to the JSON post sent from the user
+//     // This works because of our body parsing middleware
+//     let newNoteId = uuid();
+    
+//     let newNote = {
+//         id: newNoteId,
+//          //title
+//          title: req.body.title,
+//          //content 
+//         content: req.body.content
+//       };
+
 //       console.log(newNote);
     
 //       notes.push(newNote);
