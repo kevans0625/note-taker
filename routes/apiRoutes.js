@@ -63,6 +63,28 @@ module.exports = function (app) {
     })
   });
 
+
+  app.delete("/api/notes/:id", function (req, res) {
+    //grab id 
+    var currentId = req.params.id;
+    console.log(currentId);
+    //read file 
+    //remove  via filer 
+    fs.readFile('./db/db.json', 'utf-8', function (err, data) {
+      if (err) throw err
+    
+      var arrayOfObjects = JSON.parse(data)
+    
+      const result = arrayOfObjects.filter(notes => notes.id != currentId);
+
+
+
+      fs.writeFile('./db/db.json', JSON.stringify(result), 'utf-8', function (err) {
+        if (err) throw err
+        console.log('Done!')
+      })
+    })
+  })
 };
 
 
