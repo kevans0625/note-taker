@@ -30,8 +30,11 @@
         </div>
       </div>
       <div class="col-8">
-        <input class="note-title" placeholder="Note Title" maxlength="28" type="text">
-        <textarea class="note-textarea" placeholder="Note Text"></textarea>
+        <form action="/api/notes" method="POST">
+          <input class="note-title" placeholder="Note Title" name="note_title" maxlength="28" type="text">
+          <textarea class="note-textarea" placeholder="Note Text" name="note_content"></textarea>
+        </form>
+        
       </div>
     </div>
   </div>
