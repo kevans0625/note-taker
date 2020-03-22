@@ -1,6 +1,5 @@
 var fs = require("fs");
 var notes = require("../db/db.json")
-const { v4: uuidv4 } = require('uuid');
 
 //get db.json
 module.exports = function (app) {
@@ -32,6 +31,7 @@ module.exports = function (app) {
     console.log(req);
     var note_title = req.body.title;
     var note_content = req.body.text;
+    // var id = req.body.id;
     //add id as a property of note everytime a note is added 
 
     fs.readFile('./db/db.json', 'utf-8', function (err, data) {
@@ -53,7 +53,6 @@ module.exports = function (app) {
         title: note_title,
         text: note_content
       })
-
 
 
       fs.writeFile('./db/db.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
